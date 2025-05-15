@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Search Books</title>
+</head>
+<body>
+<h1>Search Books</h1>
+<form action="/search-books" method="get">
+<label for="title">Title:</label>
+<input type="text" id="title" name="title" required>
+<button type="submit">Search</button>
+</form>
+<h2>Results:</h2>
+<table border="1">
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Author</th>
+<th>Quantity</th>
+</tr>
+<tr th:each="book : ${books}">
+<td th:text="${book.id}"></td>
+<td th:text="${book.title}"></td>
+<td th:text="${book.author}"></td>
+<td th:text="${book.quantity}"></td>
+</tr>
+</table>
+<a href="/books">Back to Books</a>
+</body>
+</html>

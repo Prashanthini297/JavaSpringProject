@@ -1,0 +1,133 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    Include Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">All Books</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.borrowed ? 'Borrowed' : 'Available'}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center mt-3">
+        <a href="/" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+ <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">All Books</h1>
+    
+    <!-- Search Bar -->
+    <div class="mb-4">
+        <form action="/books/search" method="get" class="form-inline justify-content-center">
+            <input type="text" name="title" class="form-control mr-2" placeholder="Search by title or author">
+            <button type="submit" class="btn btn-warning">Search</button>
+        </form>
+    </div>
+    
+    <!-- Sorting Options -->
+   
+    <!-- Books Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.borrowed ? 'Borrowed' : 'Available'}"></td>
+					<td>
+					    <!-- Borrow Button -->
+					    <a th:if="!${book.borrowed}" 
+					       th:href="@{/books/{bookId}/borrow(bookId=${book.id})}" 
+					       class="btn btn-success btn-sm">Borrow</a>
+
+					    <!-- Return Button -->
+					    <a th:if="${book.borrowed}" 
+					       th:href="@{/books/{bookId}/return(bookId=${book.id})}" 
+					       class="btn btn-danger btn-sm">Return</a>
+					</td>
+
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Pagination -->
+    <div class="mt-3 text-center">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+                <!-- Add more pages dynamically -->
+            </ul>
+        </nav>
+    </div>
+    
+    <div class="text-center mt-3">
+        <a href="/" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+ 

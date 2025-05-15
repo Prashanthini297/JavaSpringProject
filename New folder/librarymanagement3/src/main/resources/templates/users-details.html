@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Details</title>
+</head>
+<body>
+<h1>User Details</h1>
+<table border="1">
+<tr>
+<th>User ID</th>
+<th>Name</th>
+<th>Book Title</th>
+<th>Quantity Borrowed</th>
+<th>Borrow Date</th>
+<th>Return Date</th>
+</tr>
+<tr th:each="user : ${users}">
+<td th:text="${user.id}"></td>
+<td th:text="${user.name}"></td>
+<td th:text="${user.book.title}"></td>
+<td th:text="${user.borrowedQuantity}"></td>
+<td th:text="${user.borrowDate}"></td>
+<td th:text="${user.returnDate}"></td>
+</tr>
+</table>
+<form action="/return-book" method="post">
+<label for="userId">User ID:</label>
+<input type="number" id="userId" name="userId" required>
+<button type="submit">Return Book</button>
+</form>
+<a href="/books">Back to Books</a>
+</body>
+</html>
+
+ 
