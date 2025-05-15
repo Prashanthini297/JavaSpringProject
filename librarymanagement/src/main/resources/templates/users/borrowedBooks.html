@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrowed Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Borrowed Books</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Book ID</th>
+                    <th>Title</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="entry : ${borrowedBooks}">
+                    <td th:text="${entry.key}"></td>
+                    <td th:text="${#books[entry.key].title}"></td> <!-- Assumes book details are fetched -->
+                    <td th:text="${entry.value}"></td>
+                    <td>
+                        <form th:action="@{/users/{userId}/return(userId=${userId}, bookId=${entry.key})}" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm">Return</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
